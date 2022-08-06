@@ -45,7 +45,7 @@
                         </div> --}}
 
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Rating</label>
                                     <select class="form-control" name="rating" data-placeholder="Choose one.." required>
@@ -56,10 +56,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Genre</label>
                                     <input type="text" class="form-control" name="genre" placeholder="Genre" required>

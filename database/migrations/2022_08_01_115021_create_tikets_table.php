@@ -15,12 +15,15 @@ class CreateTiketsTable extends Migration
     {
         Schema::create('tikets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nameFilm');
+            $table->foreignId('film_id');
+            $table->foreignId('bioskop_id');
+            $table->foreignId('user_id');
             $table->string('kodeKursi');
-            $table->foreignId('idUsers');
+            $table->string('reference');
+            $table->string('merchant_ref');
+            $table->integer('amount');
+            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->date('tanggalPembelian');
-            $table->string('jamPembelian');
-            $table->foreignId('tempatBioskop');
             $table->timestamps();
         });
     }

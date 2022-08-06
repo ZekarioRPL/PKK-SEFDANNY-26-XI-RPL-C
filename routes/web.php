@@ -5,6 +5,8 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\BioskopController;
 use App\Http\Controllers\Payment\TransactionController;
+use App\Http\Controllers\Payment\TripayController;
+use App\Http\Controllers\PayTripayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +25,22 @@ use App\Http\Controllers\Payment\TransactionController;
 // Route::get('/tayangsekarang', function () {
 //     return view('tayangSekarang.index');
 // });
-// Route::get('/segerahadir', function () {
-//     return view('segeraHadir.index');
+// Route::get('/history', function () {
+//     return view('payment.history', [
+//         'title' => "History"
+//     ]);
 // });
-// Route::get('/bioskop', function () {
-//     return view('bioskop.index');
-// });
-// Route::get('/dashboard', function () {
-//     return view('dashboard.dashboard');
-// });
-
+Route::get('/detail', function () {
+    return view('payment.detail', [
+        'title' => 'Detail Transaction'
+    ]);
+});
+Route::get('/kursi', function () {
+    return view('payment.kursi', [
+        'title' => "kursi"
+    ]);
+});
+Route::get('/history', [PayTripayController::class, 'history']);
 
 require __DIR__.'/auth.php';
 // Route::get('/dashboard', [FilmController::class, 'index'])->middleware(['auth'])->name('dashboard');
@@ -42,6 +50,8 @@ Route::resource('/dbbioskop', BioskopController::class)->middleware('auth');
 Route::get('/pilihpembayaran/{id}', [BioskopController::class, 'pilih']);
 Route::post('transaction', [TransactionController::class, 'store'])->name('transaction.store');
 Route::get('transaction/{reference}', [TransactionController::class, 'show'])->name('transaction.show');
+
+Route::get('detail/{reference}', [PayTripayController::class, 'detail'])->name('transaction.show');
 
 Route::resource('/dbdata', DataController::class)->middleware('auth');
 Route::get('/', [DataController::class, 'home']);

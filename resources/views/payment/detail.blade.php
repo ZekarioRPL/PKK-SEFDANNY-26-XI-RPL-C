@@ -35,46 +35,56 @@
             <div class="d-table-cell">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
+                        <div class="col-lg-12 m-auto text-center col-sm-12 col-md-12">
                             <div class="banner-content content-padding">
-                                <div class="card mb-3 " style="max-width: 1000px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="{{ asset('storage/' . $film->file) }}"
-                                                class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title text-left ml-2">Judul : {{ $film->name }}</h5>
-                                                <h5 class="card-title text-left ml-2">Genre : {{ $film->genre }}</h5>
-                                                <h5 class="card-title text-left ml-2">Rating : {{ $film->rating }}</h5>
-                                                <h5 class="card-title text-left ml-2">Durasi : {{ $film->duration }}
-                                                    Minutes</h5>
-                                                <h5 class="card-title text-left ml-2">Harga tiket : Rp. {{
-                                                    number_format($film->harga) }}</h5>
-                                                <h5 class="card-title text-left ml-2">Sinopsis :</h5>
-                                                <p class="card-text text-left ml-2"><small class="text-muted">{{
-                                                        $film->deskripsi }}</small></p>
-                                                @if (auth()->user())
-                                                <form action="/pilihpembayaran/{{ $film->id }}" method="get">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                <label>Pilih Tempat Bioskop</label>
-                                                                <select class="form-control" name="bioskop_id"
-                                                                    data-placeholder="Choose one.." required>
-                                                                    <option></option>
-                                                                    @foreach ($bioskops as $bioskops)
-                                                                    <option value="{{ $bioskops->id }}">{{ $bioskops->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="card">
+                                            <div class="card-body text-left m-1">
+                                                <h4 class="banner-title text-dark border-bottom">Detail Transaksi</h4>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <h5 class="banner-title text-dark mt-4"
+                                                            style="margin-bottom: -20px;">ID Transaksi</h5>
+                                                        <h5 class="banner-title text-secondary">{{ $detail->merchant_ref }}</h5>
                                                     </div>
-                                                    <button class="btn btn-secondary">Beli</button>
-                                                </form>
-                                                @endif
+                                                    <div class="col-md-4">
+                                                        <h5 class="banner-title text-dark text-right">{{ $detail->tanggalPembelian }}
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <h5 class="banner-title text-dark" style="margin-bottom: -20px;">Nama
+                                                    Film</h5>
+                                                <h5 class="banner-title text-secondary">{{ $detail->film->name }}</h5>
+
+                                                <h5 class="banner-title text-dark" style="margin-bottom: -20px;">Nama
+                                                    Bioskop</h5>
+                                                <h5 class="banner-title text-secondary">{{ $detail->bioskop->name }}</h5>
+
+                                                <h5 class="banner-title text-dark" style="margin-bottom: -20px;">Nama
+                                                    User</h5>
+                                                <h5 class="banner-title text-secondary">{{ $detail->user->name }}</h5>
+
+                                                <h1 class="banner-title text-dark ml-4 mt-4">A02</h1>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="card">
+                                            <div class="card-body text-left">
+                                                <h5 class="banner-title text-dark border-bottom">Total Pembayaran</h5>
+
+                                                <h5 class="banner-title text-dark" style="margin-bottom: -20px;">Harga
+                                                </h5>
+                                                <h5 class="banner-title text-secondary">{{ $detail->amount }}</h5>
+
+                                                <div class="row">
+                                                    <div class="col-md-12 text-right">
+                                                        <span class="badge badge-danger p-2 text-right">{{ $detail->status }}</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +96,9 @@
             </div>
         </div>
     </div>
+    </div>
     <!--MAIN HEADER AREA END -->
+
     {{-- Script --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

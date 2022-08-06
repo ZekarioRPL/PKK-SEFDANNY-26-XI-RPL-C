@@ -35,31 +35,9 @@
             <div class="d-table-cell">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
+                        <div class="col-lg-12 m-auto text-center col-sm-12 col-md-12">
                             <div class="banner-content content-padding">
-                                <h2 class="banner-title">Pilih Metode Pembayaran</h2>
-                                <div class="card-group justify-content-center">
-                                    @foreach ($channels as $channel)
-                                    @if ($channel->active)
-                                    <form action="{{ route('transaction.store') }}" method="POST" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="film_id" id="" value="{{ $film->id }}">
-                                        <input type="hidden" name="code_id" id="" value="{{ $channel->code }}">
-                                        <input type="hidden" name="bioskop_id" id="" value="{{ $bioskop }}">
-                                        <button type="submit" class="card m-2 text-center">
-                                            <div class="m-2 ">
-                                                <img src="{{ $channel->icon_url }}" height="80px" width="80px"
-                                                    class="card-img-top" alt="{{ $channel->name }}">
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title"> Bayar Dengan </h5>
-                                                <h5 class="card-title"> {{ $channel->name }} </h5>
-                                            </div>
-                                        </button>
-                                    </form>
-                                    @endif
-                                    @endforeach
-                                </div>
+                                <h1 class="banner-title">History</h1>
                             </div>
                         </div>
                     </div>
@@ -69,6 +47,51 @@
     </div>
     </div>
     <!--MAIN HEADER AREA END -->
+    <!--  Contact START  -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID Transaksi</th>
+                                <th scope="col">Nama Film</th>
+                                <th scope="col">Bioskop</th>
+                                <th scope="col" class="text-right">status</th>
+                                <th scope="col " class="text-right">
+                                    <div class="text-center">
+                                        Action
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            @foreach ($historys as $history)
+                            <tr>
+                                <th scope="row">{{ $history->merchant_ref }}</th>
+                                <td>{{ $history->film->name }}</td>
+                                <td>{{ $history->bioskop->name }}</td>
+                                <td class="text-right"><span class="badge badge-danger p-2">{{ $history->status
+                                        }}</span></td>
+                                <td class="text-right">
+                                    <a href="/detail/{{ $history->reference }}"><span
+                                            class="badge badge-primary p-2">Detail Transaksi</span></a>
+                                    <a href="/transaction/{{ $history->reference }}"><span
+                                            class="badge badge-primary p-2">Cara Pembayaran</span></a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+    <!--  CONTACT END  -->
+
     {{-- Script --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

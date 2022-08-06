@@ -89,9 +89,11 @@ class TripayController extends Controller
     
     curl_close($curl);
     $response = json_decode($response)->data;
+
     // dd($response);
     return $response ? $response : $error;
   }
+  
   public function detailTransaction($reference)
   {
     $apiKey = env('TRIPAY_API_KEY');

@@ -18,7 +18,7 @@ class CreateFilmsTable extends Migration
             $table->string('name');
             $table->string('rating');
             $table->string('genre');
-            $table->number('duration');
+            $table->integer('duration');
             $table->date('jadwalPenayangan');
             $table->date('jadwalPenutupan');
             $table->time('jamPenayangan')->nullable();
